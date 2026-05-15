@@ -1,0 +1,20 @@
+{
+  "name": "base64decode",
+  "version": "1.0.0",
+  "description": "A lightweight Chrome Manifest V3 extension for decoding selected Base64 text from the context menu.",
+  "private": true,
+  "scripts": {
+    "check": "node -e \"JSON.parse(require('node:fs').readFileSync('manifest.json','utf8')); console.log('manifest json ok')\" && node --check base64.js && node --check background.js",
+    "test": "node --test tests/base64.test.js tests/overlay-injection.test.js"
+  },
+  "keywords": [
+    "chrome-extension",
+    "manifest-v3",
+    "base64",
+    "decoder"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}

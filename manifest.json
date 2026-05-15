@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Base64Decode",
+  "version": "1.0.0",
+  "description": "通过右键菜单解码选中的标准 Base64 文本。",
+  "permissions": [
+    "activeTab",
+    "clipboardWrite",
+    "contextMenus",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}
