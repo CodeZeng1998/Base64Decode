@@ -4,7 +4,7 @@
   "description": "A lightweight Chrome Manifest V3 extension for decoding selected Base64 text from the context menu.",
   "private": true,
   "scripts": {
-    "check": "node -e \"JSON.parse(require('node:fs').readFileSync('manifest.json','utf8')); console.log('manifest json ok')\" && node --check base64.js && node --check background.js",
+    "check": "node -e \"const fs=require('node:fs'); ['manifest.json','_locales/en/messages.json','_locales/zh_CN/messages.json'].forEach((file)=>JSON.parse(fs.readFileSync(file,'utf8').replace(/^\\uFEFF/,''))); console.log('manifest and locales json ok')\" && node --check base64.js && node --check background.js",
     "test": "node --test tests/base64.test.js tests/overlay-injection.test.js"
   },
   "keywords": [

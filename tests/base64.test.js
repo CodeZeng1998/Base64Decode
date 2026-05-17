@@ -89,3 +89,14 @@ test('rejects text whose length is not a valid Base64 length', () => {
     error: '不是有效的 Base64 编码',
   });
 });
+
+test('supports localized custom invalid message', () => {
+  const result = decodeBase64Selection('abcde', {
+    invalidBase64Message: 'Invalid Base64 input',
+  });
+
+  assert.deepEqual(result, {
+    ok: false,
+    error: 'Invalid Base64 input',
+  });
+});

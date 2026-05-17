@@ -1,6 +1,23 @@
 (function (root) {
   const INVALID_BASE64_MESSAGE = '不是有效的 Base64 编码';
 
+  function resolveInvalidBase64Message(options) {
+    if (typeof options === 'string' && options.trim()) {
+      return options;
+    }
+
+    if (
+      options &&
+      typeof options === 'object' &&
+      typeof options.invalidBase64Message === 'string' &&
+      options.invalidBase64Message.trim()
+    ) {
+      return options.invalidBase64Message;
+    }
+
+    return INVALID_BASE64_MESSAGE;
+  }
+
   function cleanSelectionText(text) {
     return String(text || '').replace(/\s+/g, '');
   }
@@ -102,13 +119,14 @@
     }
   }
 
-  function decodeBase64Selection(selectionText) {
+  function decodeBase64Selection(selectionText, options) {
+    const invalidBase64Message = resolveInvalidBase64Message(options);
     const cleanedText = cleanSelectionText(selectionText);
 
     if (!isStandardBase64(cleanedText)) {
       return {
         ok: false,
-        error: INVALID_BASE64_MESSAGE,
+        error: invalidBase64Message,
       };
     }
 
@@ -120,7 +138,7 @@
     } catch (error) {
       return {
         ok: false,
-        error: INVALID_BASE64_MESSAGE,
+        error: invalidBase64Message,
       };
     }
   }

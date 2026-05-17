@@ -1,8 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "Base64Decode",
+  "name": "__MSG_extensionName__",
   "version": "1.0.0",
-  "description": "通过右键菜单解码选中的标准 Base64 文本。",
+  "description": "__MSG_extensionDescription__",
+  "default_locale": "en",
   "permissions": [
     "activeTab",
     "clipboardWrite",

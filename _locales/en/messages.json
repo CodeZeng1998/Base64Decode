@@ -1,0 +1,38 @@
+{
+  "extensionName": {
+    "message": "Base64Decode",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "Decode selected standard Base64 text from the context menu.",
+    "description": "Extension description"
+  },
+  "contextMenuDecode": {
+    "message": "Decode Base64",
+    "description": "Context menu title for decoding selected Base64 text"
+  },
+  "invalidBase64Message": {
+    "message": "Invalid Base64 input",
+    "description": "Error message shown when the selected text is not valid Base64"
+  },
+  "overlayAriaLabel": {
+    "message": "Base64 decode result",
+    "description": "Accessible label for the result overlay"
+  },
+  "copyButton": {
+    "message": "Copy",
+    "description": "Copy button label"
+  },
+  "closeButton": {
+    "message": "Close",
+    "description": "Close button label"
+  },
+  "copiedStatus": {
+    "message": "Copied",
+    "description": "Status text shown after successful copy"
+  },
+  "copyFailedStatus": {
+    "message": "Copy failed",
+    "description": "Status text shown after failed copy"
+  }
+}

@@ -49,6 +49,20 @@ test('overlay injection function runs without service worker helper scope', () =
       },
     },
     chrome: {
+      i18n: {
+        getMessage(key) {
+          const map = {
+            contextMenuDecode: 'Decode Base64',
+            invalidBase64Message: 'Invalid Base64 input',
+            overlayAriaLabel: 'Base64 decode result',
+            copyButton: 'Copy',
+            closeButton: 'Close',
+            copiedStatus: 'Copied',
+            copyFailedStatus: 'Copy failed',
+          };
+          return map[key] || '';
+        },
+      },
       runtime: {
         onInstalled: { addListener() {} },
         onStartup: { addListener() {} },
@@ -139,6 +153,20 @@ test('overlay closes when clicking outside it', () => {
       },
     },
     chrome: {
+      i18n: {
+        getMessage(key) {
+          const map = {
+            contextMenuDecode: 'Decode Base64',
+            invalidBase64Message: 'Invalid Base64 input',
+            overlayAriaLabel: 'Base64 decode result',
+            copyButton: 'Copy',
+            closeButton: 'Close',
+            copiedStatus: 'Copied',
+            copyFailedStatus: 'Copy failed',
+          };
+          return map[key] || '';
+        },
+      },
       runtime: {
         onInstalled: { addListener() {} },
         onStartup: { addListener() {} },

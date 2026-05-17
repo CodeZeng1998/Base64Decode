@@ -1,0 +1,38 @@
+{
+  "extensionName": {
+    "message": "Base64Decode",
+    "description": "扩展名称"
+  },
+  "extensionDescription": {
+    "message": "通过右键菜单解码选中的标准 Base64 文本。",
+    "description": "扩展描述"
+  },
+  "contextMenuDecode": {
+    "message": "解码 Base64",
+    "description": "用于解码选中 Base64 文本的右键菜单标题"
+  },
+  "invalidBase64Message": {
+    "message": "不是有效的 Base64 编码",
+    "description": "当选中文本不是合法 Base64 时显示的错误信息"
+  },
+  "overlayAriaLabel": {
+    "message": "Base64 解码结果",
+    "description": "解码结果浮层的无障碍标签"
+  },
+  "copyButton": {
+    "message": "复制到剪贴板",
+    "description": "复制按钮文案"
+  },
+  "closeButton": {
+    "message": "关闭",
+    "description": "关闭按钮文案"
+  },
+  "copiedStatus": {
+    "message": "已复制",
+    "description": "复制成功后显示的状态文案"
+  },
+  "copyFailedStatus": {
+    "message": "复制失败",
+    "description": "复制失败后显示的状态文案"
+  }
+}

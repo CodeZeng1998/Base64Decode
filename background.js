@@ -5,22 +5,49 @@ try {
 }
 
 const MENU_ID = 'base64decode-decode-selection';
+const FALLBACK_TEXT = {
+  contextMenuDecode: 'Decode Base64',
+  invalidBase64Message: 'Invalid Base64 input',
+  overlayAriaLabel: 'Base64 decode result',
+  copyButton: 'Copy',
+  closeButton: 'Close',
+  copiedStatus: 'Copied',
+  copyFailedStatus: 'Copy failed',
+};
 
-chrome.runtime.onInstalled.addListener(() => {
+function getI18nMessage(key) {
+  if (!chrome.i18n || typeof chrome.i18n.getMessage !== 'function') {
+    return FALLBACK_TEXT[key] || '';
+  }
+
+  return chrome.i18n.getMessage(key) || FALLBACK_TEXT[key] || '';
+}
+
+function getLocalizedOverlayText() {
+  return {
+    ariaLabel: getI18nMessage('overlayAriaLabel'),
+    copyButton: getI18nMessage('copyButton'),
+    closeButton: getI18nMessage('closeButton'),
+    copiedStatus: getI18nMessage('copiedStatus'),
+    copyFailedStatus: getI18nMessage('copyFailedStatus'),
+  };
+}
+
+function createContextMenu() {
   chrome.contextMenus.create({
     id: MENU_ID,
-    title: '解码 Base64',
+    title: getI18nMessage('contextMenuDecode'),
     contexts: ['selection'],
   });
+}
+
+chrome.runtime.onInstalled.addListener(() => {
+  createContextMenu();
 });
 
 chrome.runtime.onStartup.addListener(() => {
   chrome.contextMenus.removeAll(() => {
-    chrome.contextMenus.create({
-      id: MENU_ID,
-      title: '解码 Base64',
-      contexts: ['selection'],
-    });
+    createContextMenu();
   });
 });
 
@@ -29,7 +56,9 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     return;
   }
 
-  const result = Base64Decode.decodeBase64Selection(info.selectionText || '');
+  const result = Base64Decode.decodeBase64Selection(info.selectionText || '', {
+    invalidBase64Message: getI18nMessage('invalidBase64Message'),
+  });
   const message = result.ok ? result.value : result.error;
 
   chrome.scripting.executeScript({
@@ -39,6 +68,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
       {
         text: message,
         canCopy: result.ok,
+        uiText: getLocalizedOverlayText(),
       },
     ],
   }, () => {
@@ -113,10 +143,17 @@ function showBase64DecodeOverlay(payload) {
   const copyButton = document.createElement('button');
   const closeButton = document.createElement('button');
   const status = document.createElement('span');
+  const uiText = Object.assign({
+    ariaLabel: 'Base64 decode result',
+    copyButton: 'Copy',
+    closeButton: 'Close',
+    copiedStatus: 'Copied',
+    copyFailedStatus: 'Copy failed',
+  }, payload.uiText || {});
 
   overlay.id = EXISTING_ID;
   overlay.setAttribute('role', 'dialog');
-  overlay.setAttribute('aria-label', 'Base64 解码结果');
+  overlay.setAttribute('aria-label', uiText.ariaLabel);
 
   Object.assign(overlay.style, {
     position: 'fixed',
@@ -184,9 +221,9 @@ function showBase64DecodeOverlay(payload) {
 
   textArea.textContent = payload.text;
   copyButton.type = 'button';
-  copyButton.textContent = '复制到剪贴板';
+  copyButton.textContent = uiText.copyButton;
   closeButton.type = 'button';
-  closeButton.textContent = '关闭';
+  closeButton.textContent = uiText.closeButton;
 
   if (!payload.canCopy) {
     copyButton.disabled = true;
@@ -199,13 +236,13 @@ function showBase64DecodeOverlay(payload) {
   copyButton.addEventListener('click', async () => {
     try {
       await navigator.clipboard.writeText(payload.text);
-      status.textContent = '已复制';
+      status.textContent = uiText.copiedStatus;
       window.setTimeout(() => {
         status.textContent = '';
       }, 1600);
     } catch (error) {
       status.style.color = '#b91c1c';
-      status.textContent = '复制失败';
+      status.textContent = uiText.copyFailedStatus;
     }
   });
 
