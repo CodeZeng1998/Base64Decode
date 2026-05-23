@@ -5,7 +5,9 @@
   "private": true,
   "scripts": {
     "check": "node -e \"const fs=require('node:fs'); ['manifest.json','_locales/en/messages.json','_locales/zh_CN/messages.json'].forEach((file)=>JSON.parse(fs.readFileSync(file,'utf8').replace(/^\\uFEFF/,''))); console.log('manifest and locales json ok')\" && node --check base64.js && node --check background.js",
-    "test": "node --test tests/base64.test.js tests/overlay-injection.test.js"
+    "test": "node --test tests/base64.test.js tests/overlay-injection.test.js",
+    "build": "bash scripts/build.sh",
+    "build:win": "scripts\\build.bat"
   },
   "keywords": [
     "chrome-extension",

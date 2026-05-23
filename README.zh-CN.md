@@ -1,6 +1,12 @@
 # Base64Decode
 
-Base64Decode 是一个轻量级 Chrome 扩展。选中网页中的 Base64 文本后，右键点击 **解码 Base64**，即可在选区附近查看解码结果，并一键复制到剪贴板。
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Chrome Web Store](https://img.shields.io/badge/Chrome-Extension-blue.svg)](https://chrome.google.com/webstore)
+[![Manifest V3](https://img.shields.io/badge/Manifest-V3-green.svg)](https://developer.chrome.com/docs/extensions/mv3/intro/)
+
+> 🌏 [English](README.en.md)
+
+一个轻量级的 Chrome 扩展，用于直接在浏览器中解码 Base64 文本。选中任意 Base64 文本，右键点击即可立即解码，并通过精美的浮层显示结果。
 
 ## 语言支持
 
@@ -21,21 +27,24 @@ Base64Decode 是一个轻量级 Chrome 扩展。选中网页中的 Base64 文本
 - 优先按 UTF-8 解码；UTF-8 失败后尝试 `gb18030`、`gbk`、`big5`。
 - 无运行时依赖，无构建步骤。
 
-## 安装（源码）
+## 安装
 
-1. 克隆仓库。
-2. 打开 Chrome 的 `chrome://extensions/`。
-3. 打开右上角 **开发者模式**。
-4. 点击 **加载已解压的扩展程序**。
+### 从 Chrome 应用商店安装（推荐）
+
+> _即将上线 - 扩展正在等待 Chrome 应用商店审核_
+
+### 从源码安装
+
+1. 克隆本仓库：
+   ```bash
+   git clone https://github.com/CodeZeng1998/Base64Decode.git
+   cd Base64Decode
+   ```
+
+2. 在 Chrome 中打开 `chrome://extensions/`。
+3. 启用**开发者模式**（右上角开关）。
+4. 点击**加载已解压的扩展程序**。
 5. 选择项目根目录。
-
-项目根目录必须包含：
-
-```text
-manifest.json
-background.js
-base64.js
-```
 
 ## 使用方式
 
@@ -59,10 +68,26 @@ npm test
 npm run check
 ```
 
-## 相关文档
+## 贡献
 
-- English documentation: [README.en.md](README.en.md)
+欢迎贡献！请先阅读我们的[贡献指南](CONTRIBUTING.md)。
 
-## License
+## 文档
+
+- [架构说明](docs/ARCHITECTURE.md)
+- [贡献指南](CONTRIBUTING.md)
+- [安全策略](SECURITY.md)
+- [行为准则](CODE_OF_CONDUCT.md)
+
+## 支持
+
+- 🐛 [报告 Bug](https://github.com/CodeZeng1998/Base64Decode/issues/new?template=bug_report.md)
+- 💡 [功能建议](https://github.com/CodeZeng1998/Base64Decode/issues/new?template=feature_request.md)
+
+## 许可证
 
 [MIT](LICENSE)
+
+---
+
+由 Base64Decode 贡献者用 ❤️ 制作

@@ -1,6 +1,12 @@
 # Base64Decode
 
-Base64Decode is a lightweight Chrome extension. Select Base64 text on any webpage, right-click, and choose **Decode Base64** to see decoded content near the selection and copy it with one click.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Chrome Web Store](https://img.shields.io/badge/Chrome-Extension-blue.svg)](https://chrome.google.com/webstore)
+[![Manifest V3](https://img.shields.io/badge/Manifest-V3-green.svg)](https://developer.chrome.com/docs/extensions/mv3/intro/)
+
+> 🌏 [简体中文](README.zh-CN.md)
+
+A lightweight Chrome extension for decoding Base64 text directly from your browser. Select Base64 text on any webpage, right-click, and choose **Decode Base64** to see decoded content near the selection and copy it with one click.
 
 ## Language Support
 
@@ -21,21 +27,24 @@ Base64Decode is a lightweight Chrome extension. Select Base64 text on any webpag
 - UTF-8 first; fallback decode attempts `gb18030`, `gbk`, `big5` when UTF-8 fails.
 - No runtime dependencies, no build step.
 
-## Installation (Source)
+## Installation
 
-1. Clone this repository.
+### From Chrome Web Store (Recommended)
+
+> _Coming soon - Extension is pending Chrome Web Store review_
+
+### From Source
+
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/CodeZeng1998/Base64Decode.git
+   cd Base64Decode
+   ```
+
 2. Open `chrome://extensions/` in Chrome.
-3. Enable **Developer mode**.
+3. Enable **Developer mode** (toggle in top-right corner).
 4. Click **Load unpacked**.
 5. Select the project root directory.
-
-Required files in root:
-
-```text
-manifest.json
-background.js
-base64.js
-```
 
 ## Usage
 
@@ -59,10 +68,26 @@ npm test
 npm run check
 ```
 
-## Related Docs
+## Contributing
 
-- Chinese documentation: [README.zh-CN.md](README.zh-CN.md)
+Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) first.
+
+## Documentation
+
+- [Architecture](docs/ARCHITECTURE.md)
+- [Contributing Guide](CONTRIBUTING.md)
+- [Security Policy](SECURITY.md)
+- [Code of Conduct](CODE_OF_CONDUCT.md)
+
+## Support
+
+- 🐛 [Report a bug](https://github.com/CodeZeng1998/Base64Decode/issues/new?template=bug_report.md)
+- 💡 [Request a feature](https://github.com/CodeZeng1998/Base64Decode/issues/new?template=feature_request.md)
 
 ## License
 
 [MIT](LICENSE)
+
+---
+
+Made with ❤️ by the Base64Decode contributors
